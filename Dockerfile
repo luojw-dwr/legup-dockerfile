@@ -33,5 +33,8 @@ COPY legup-4.0.tar.gz /root/legup_src/legup-4.0.tar.gz
 RUN cd legup_src && tar xvzf legup-4.0.tar.gz && cd legup-4.0 && make -j6; exit 0
 RUN rm /root/legup_src/legup-4.0.tar.gz
 
+# Setup LegUp examples
+RUN cd legup_src/legup-4.0/examples/lib/llvm && make -j6;
+
 # Setting PATH for LegUp and GXemul
-ENV PATH /root/legup_src/legup-4.0/llvm/Release/bin:/root/gxemul_src/gxemul-0.6.0.1:$PATH
+ENV PATH /root/legup_src/legup-4.0/llvm/Release+Asserts/bin:/root/gxemul_src/gxemul-0.6.0.1:$PATH
